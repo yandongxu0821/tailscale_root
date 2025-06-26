@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Tailscale Root</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_status">状态</string>
+    <string name="title_control">控制台</string>
+    <string name="title_log">日志</string>
+    <string name="up_options">tailscale up 参数配置</string>
+    <string name="dns_accept_dns">接受 DNS (accept-dns)</string>
+    <string name="accept_risk">接受风险 (accept-risk)</string>
+    <string name="accept_routes">接受路由 (accept-routes)</string>
+    <string name="advertise_connector">发布连接器 (advertise-connector)</string>
+    <string name="advertise_exit_node">发布为出口节点 (advertise-exit-node)</string>
+    <string name="exit_node_allow_lan_access">出口节点允许局域网访问 (exit-node-allow-lan-access)</string>
+    <string name="force_reauth">强制重新认证 (force-reauth)</string>
+    <string name="json_json">JSON 输出 (json)</string>
+    <string name="qr">显示二维码 (qr)</string>
+    <string name="reset">重置 (reset)</string>
+    <string name="shields_up">屏蔽所有入站连接 (shields-up)</string>
+    <string name="ssh_ssh">启用 SSH (ssh)</string>
+    <string name="advertise_routes">发布路由 (advertise-routes)</string>
+    <string name="advertise_tags">标签 (advertise-tags)</string>
+    <string name="auth_key">认证密钥 (auth-key)</string>
+    <string name="exit_node">使用出口节点 (exit-node)</string>
+    <string name="hostname">主机名 (hostname)</string>
+    <string name="login_server">控制服务器 (login-server)</string>
+    <string name="timeout">超时 (timeout)</string>
+    <string name="button_return">返回上一级</string>
+    <string name="text_auth">认证与登录</string>
+    <string name="text_connection">连接配置</string>
+    <string name="text_routes">路由与出口节点</string>
+    <string name="text_advanced">高级与调试</string>
+    <string name="text_execute">执行 tailscale up</string>
+</resources>

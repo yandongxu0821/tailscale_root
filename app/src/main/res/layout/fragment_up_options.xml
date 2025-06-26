@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/up_options_scroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="?attr/actionBarSize"
+    tools:context=".ui.UpOptionsFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- 返回按钮 -->
+        <Button
+            android:id="@+id/btn_back_control"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_return" />
+
+        <!-- 分组：认证与登录 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_auth"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:paddingTop="16dp" />
+
+        <EditText
+            android:id="@+id/edit_login_server"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/login_server"
+            android:inputType="textUri" />
+
+        <EditText
+            android:id="@+id/edit_auth_key"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/auth_key"
+            android:inputType="textPassword" />
+
+        <CheckBox
+            android:id="@+id/check_force_reauth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/force_reauth" />
+
+        <!-- 分组：连接配置 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_connection"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:paddingTop="16dp" />
+
+        <CheckBox android:id="@+id/check_accept_dns" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/dns_accept_dns" />
+        <CheckBox android:id="@+id/check_accept_routes" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/accept_routes" />
+        <CheckBox android:id="@+id/check_accept_risk" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/accept_risk" />
+
+        <EditText
+            android:id="@+id/edit_hostname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hostname"
+            android:inputType="text" />
+
+        <!-- 分组：出口节点和路由发布 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_routes"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:paddingTop="16dp" />
+
+        <CheckBox android:id="@+id/check_advertise_connector" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/advertise_connector" />
+        <CheckBox android:id="@+id/check_advertise_exit_node" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/advertise_exit_node" />
+
+        <EditText
+            android:id="@+id/edit_exit_node"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/exit_node"
+            android:inputType="text" />
+
+        <CheckBox android:id="@+id/check_exit_node_lan" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/exit_node_allow_lan_access" />
+        <EditText
+            android:id="@+id/edit_advertise_routes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/advertise_routes"
+            android:inputType="text" />
+        <EditText
+            android:id="@+id/edit_advertise_tags"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/advertise_tags"
+            android:inputType="text" />
+
+        <!-- 分组：高级选项 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_advanced"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:paddingTop="16dp" />
+
+        <CheckBox android:id="@+id/check_json" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/json_json" />
+        <CheckBox android:id="@+id/check_qr" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/qr" />
+        <CheckBox android:id="@+id/check_reset" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/reset" />
+        <CheckBox android:id="@+id/check_shields_up" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/shields_up" />
+        <CheckBox android:id="@+id/check_ssh" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/ssh_ssh" />
+
+        <EditText
+            android:id="@+id/edit_timeout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/timeout"
+            android:inputType="text" />
+
+        <!-- 执行按钮 -->
+        <Button
+            android:id="@+id/btn_execute_up"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_execute"
+            android:layout_marginTop="16dp" />
+
+    </LinearLayout>
+</ScrollView>

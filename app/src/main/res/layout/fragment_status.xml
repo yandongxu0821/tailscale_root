@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:paddingBottom="?attr/actionBarSize">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start">
+
+        <TextView
+            android:id="@+id/text_daemon_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="守护进程状态："
+            android:textStyle="bold"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/text_ip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tailscale IP："
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/text_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Status 输出："
+            android:padding="8dp"
+            android:background="#EEEEEE"
+            android:textIsSelectable="true" />
+    </LinearLayout>
+</ScrollView>

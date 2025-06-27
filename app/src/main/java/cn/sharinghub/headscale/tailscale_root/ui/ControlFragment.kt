@@ -19,7 +19,7 @@ class ControlFragment : Fragment(R.layout.fragment_control) {
     private lateinit var btnStop: Button
     private lateinit var btnUp: Button
     private lateinit var btnDown: Button
-    private lateinit var authKeyEdit: EditText
+    private lateinit var btnRecv: Button
     private lateinit var resultText: TextView
 
     override fun onCreateView(
@@ -37,6 +37,7 @@ class ControlFragment : Fragment(R.layout.fragment_control) {
         btnStop = view.findViewById(R.id.btn_stop)
         btnUp = view.findViewById(R.id.btn_up)
         btnDown = view.findViewById(R.id.btn_down)
+        btnRecv = view.findViewById(R.id.btn_recv)
         resultText = view.findViewById(R.id.text_result)
 
         btnInstall.setOnClickListener {
@@ -74,6 +75,21 @@ class ControlFragment : Fragment(R.layout.fragment_control) {
                 val result = DaemonManager.tailscaleDown()
                 result.success to result.output.ifEmpty { result.error }
             }
+        }
+
+        btnRecv.setOnClickListener {
+            Thread {
+                val result = DaemonManager.recvFileFromTaildrop()
+                val output = if (result.success) {
+                    "接收成功：\n${result.output}"
+                } else {
+                    "接收失败：\n${result.error.ifBlank { result.output }}"
+                }
+
+                activity?.runOnUiThread {
+                    resultText.text = output
+                }
+            }.start()
         }
     }
 

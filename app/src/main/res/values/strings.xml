@@ -32,4 +32,11 @@
     <string name="text_routes">路由与出口节点</string>
     <string name="text_advanced">高级与调试</string>
     <string name="text_execute">执行 tailscale up</string>
+    <string name="text_install">安装二进制</string>
+    <string name="text_daemonStart">启动守护进程</string>
+    <string name="text_daemonStop">停止守护进程</string>
+    <string name="text_tailscaleUp">连接 tailscale (up)</string>
+    <string name="text_tailscaleDown">断开 tailscale (down)</string>
+    <string name="text_recv">从 Taildrop 接收文件</string>
+    <string name="text_ctrlStatus">状态输出将在这里显示</string>
 </resources>

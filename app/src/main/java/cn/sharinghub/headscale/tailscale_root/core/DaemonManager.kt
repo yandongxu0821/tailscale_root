@@ -6,47 +6,19 @@ import cn.sharinghub.headscale.tailscale_root.util.LogCollector
 object DaemonManager {
 
     private const val STATE_PATH = "/data/local/temp/tailscale/state.json"
-    private const val SOCKET_PATH = "/data/local/temp/tailscale/tailscaled.sock"
+    const val SOCKET_PATH = "/data/local/temp/tailscale/tailscaled.sock"
     private const val PORT = 41641
 
     /**
      * 启动 tailscaled 守护进程
      */
-//    fun startDaemon(): Boolean {
-//        LogCollector.log("正在启动 tailscaled 守护进程...")
-//
-//        val cmd = listOf(
-//            "setenforce 0",
-//            "mkdir -p /dev/net",
-//            "ln -sf /dev/tun /dev/net/tun",
-//            "chmod 755 ${BinaryInstaller.getTailscaledPath()}",
-//            "${BinaryInstaller.getTailscaledPath()} " +
-//                    "--tun=tun " +
-//                    "--state=$STATE_PATH " +
-//                    "--socket=$SOCKET_PATH " +
-//                    "--port=$PORT &"
-//        )
-//
-//        cmd.forEach { LogCollector.log("执行命令: $it") }
-//
-//        val result = RootShell.exec(cmd)
-//
-//        if (result.success) {
-//            LogCollector.log("tailscaled 启动成功。")
-//        } else {
-//            LogCollector.log("tailscaled 启动失败！\n错误输出: ${result.output}")
-//        }
-//
-//        return result.success
-//    }
-
     private var tailscaledProcess: Process? = null
 
     fun startDaemon(context: Context): Boolean {
         LogCollector.log("正在启动 tailscaled（捕获日志）...")
 
         try {
-            // 启动前准备 tun 设备和目录
+            // 启动前准备
             RootShell.exec(listOf(
                 "setenforce 0",
                 "mkdir -p /dev/net",
@@ -54,7 +26,7 @@ object DaemonManager {
                 "chmod 755 ${BinaryInstaller.getTailscaledPath()}"
             ))
 
-            // 构造命令行（不加 &，我们捕获流）
+            // 构造命令行
             val cmd = listOf(
                 "su", "-c",
                 "${BinaryInstaller.getTailscaledPath()} " +
@@ -73,11 +45,11 @@ object DaemonManager {
             Thread {
                 val reader = tailscaledProcess!!.inputStream.bufferedReader()
                 reader.forEachLine { line ->
-                    LogCollector.log("[tailscaled] $line", tag = "daemon")
+                    LogCollector.log(line, tag = "daemon")
                 }
             }.start()
 
-            LogCollector.log("tailscaled 启动成功（已开始读取日志）")
+            LogCollector.log("tailscaled 启动成功，同时开始捕获日志")
             return true
         } catch (e: Exception) {
             e.printStackTrace()
@@ -97,12 +69,13 @@ object DaemonManager {
 
     /**
      * 启动 tailscale 网络连接（需要登录或 authkey）
+     * 已被弃用，并升级为支持全部参数的选项页
      */
-    fun tailscaleUp(authKey: String? = null): RootShell.CommandResult {
-        val baseCmd = "${BinaryInstaller.getTailscalePath()} --socket=$SOCKET_PATH up"
-        val fullCmd = if (!authKey.isNullOrBlank()) "$baseCmd --authkey=$authKey" else baseCmd
-        return RootShell.exec(fullCmd)
-    }
+//    fun tailscaleUp(authKey: String? = null): RootShell.CommandResult {
+//        val baseCmd = "${BinaryInstaller.getTailscalePath()} --socket=$SOCKET_PATH up"
+//        val fullCmd = if (!authKey.isNullOrBlank()) "$baseCmd --authkey=$authKey" else baseCmd
+//        return RootShell.exec(fullCmd)
+//    }
 
     /**
      * 停止 tailscale 网络连接
@@ -113,12 +86,20 @@ object DaemonManager {
     }
 
     /**
-     * 获取当前连接状态（类似 tailscale status）
+     * 获取当前连接状态（tailscale status）
      */
     fun getStatus(): RootShell.CommandResult {
         val cmd = "${BinaryInstaller.getTailscalePath()} --socket=$SOCKET_PATH status"
         return RootShell.exec(cmd)
     }
+    /**
+     * 获取当前连接状态（tailscale status --json）
+     */
+    fun getStatusJson(): RootShell.CommandResult {
+        val cmd = "${BinaryInstaller.getTailscalePath()} --socket=$SOCKET_PATH status --json"
+        return RootShell.exec(cmd)
+    }
+
 
     /**
      * 获取当前分配的 Tailscale IP 地址（提取自 status）
@@ -128,6 +109,14 @@ object DaemonManager {
         if (!result.success) return null
         val regex = Regex("""^100\.\d+\.\d+\.\d+""", RegexOption.MULTILINE)
         return regex.find(result.output)?.value
+    }
+
+    /**
+     * 从 Taildrop 获取接收到的文件
+     */
+    fun recvFileFromTaildrop(): RootShell.CommandResult {
+        val cmd = "${BinaryInstaller.getTailscalePath()} --socket=$SOCKET_PATH file get /sdcard/Download/"
+        return RootShell.exec(cmd)
     }
 
     /**

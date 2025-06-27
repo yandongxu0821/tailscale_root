@@ -69,7 +69,7 @@ class TailscaleService : Service() {
         return NotificationCompat.Builder(this, CHANNEL_ID)
             .setContentTitle("Tailscale Rooted")
             .setContentText(content)
-            .setSmallIcon(R.drawable.ic_notification) // 请确保这个图标存在
+            .setSmallIcon(R.drawable.ic_notification)
             .setContentIntent(pendingMainIntent)
             .addAction(R.drawable.ic_notification, "停止服务", pendingStopIntent)
             .setOngoing(true)

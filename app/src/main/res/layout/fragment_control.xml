@@ -17,41 +17,48 @@
             android:id="@+id/btn_install"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="安装二进制" />
+            android:text="@string/text_install" />
 
         <Button
             android:id="@+id/btn_start"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="启动守护进程"
+            android:text="@string/text_daemonStart"
             android:layout_marginTop="8dp" />
 
         <Button
             android:id="@+id/btn_stop"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="停止守护进程"
+            android:text="@string/text_daemonStop"
             android:layout_marginTop="8dp" />
 
         <Button
             android:id="@+id/btn_up"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="连接 tailscale (up)"
+            android:text="@string/text_tailscaleUp"
             android:layout_marginTop="8dp" />
 
         <Button
             android:id="@+id/btn_down"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="断开 tailscale (down)"
+            android:text="@string/text_tailscaleDown"
+            android:layout_marginTop="8dp" />
+
+        <Button
+            android:id="@+id/btn_recv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_recv"
             android:layout_marginTop="8dp" />
 
         <TextView
             android:id="@+id/text_result"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="状态输出将在这里显示"
+            android:text="@string/text_ctrlStatus"
             android:padding="12dp"
             android:layout_marginTop="16dp"
             android:background="#EEEEEE"

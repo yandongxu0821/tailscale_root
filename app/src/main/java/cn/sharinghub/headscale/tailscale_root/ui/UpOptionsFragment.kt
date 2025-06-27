@@ -44,7 +44,7 @@ class UpOptionsFragment : Fragment() {
         fun getText(id: Int): String = view.findViewById<EditText>(id)?.text?.toString()?.trim().orEmpty()
 
         // 布尔型参数
-        if (isChecked(R.id.check_accept_dns)) args += "--accept-dns" else args += "--accept-dns=false"
+        if (isChecked(R.id.check_accept_dns)) args += "--accept-dns"
         if (isChecked(R.id.check_accept_risk)) args += "--accept-risk"
         if (isChecked(R.id.check_accept_routes)) args += "--accept-routes"
         if (isChecked(R.id.check_advertise_connector)) args += "--advertise-connector"

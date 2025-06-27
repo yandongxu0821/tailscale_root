@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    android:paddingBottom="?attr/actionBarSize">
+    android:layout_marginBottom="?attr/actionBarSize">
 
     <LinearLayout
         android:orientation="vertical"
@@ -15,7 +15,7 @@
             android:id="@+id/text_daemon_status"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="守护进程状态："
+            android:text="@string/text_daemonStatus"
             android:textStyle="bold"
             android:padding="8dp" />
 
@@ -23,14 +23,14 @@
             android:id="@+id/text_ip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tailscale IP："
+            android:text="@string/text_tailscaleIp"
             android:padding="8dp" />
 
         <TextView
             android:id="@+id/text_status"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Status 输出："
+            android:text="@string/text_status"
             android:padding="8dp"
             android:background="#EEEEEE"
             android:textIsSelectable="true" />

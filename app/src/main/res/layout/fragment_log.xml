@@ -4,8 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    android:paddingBottom="?attr/actionBarSize">
+    android:padding="16dp">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -15,12 +14,12 @@
 
         <TextView
             android:id="@+id/tag_select"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:clickable="true"
             android:focusable="true"
-            android:text="general ⇋"
+            android:text="@string/text_logGeneral"
             android:textColor="#2196F3"
             android:textSize="16sp" />
 
@@ -28,36 +27,34 @@
             android:id="@+id/btn_refresh"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="刷新" />
+            android:text="@string/text_btnRefresh" />
 
         <Button
             android:id="@+id/btn_clear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="清空日志"
+            android:text="@string/text_btnFlushLog"
             android:layout_marginStart="12dp" />
 
     </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="613dp"
+        android:layout_height="0dp"
         android:layout_marginTop="12dp"
         android:layout_weight="1"
-        android:background="#EEEEEE">
+        android:background="#EEEEEE"
+        android:layout_marginBottom="?attr/actionBarSize">
 
         <TextView
             android:id="@+id/text_log"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="12dp"
-            android:text="日志输出将在这里显示"
+            android:paddingBottom="?attr/actionBarSize"
+            android:text="@string/text_logHint"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textIsSelectable="true" />
     </ScrollView>
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
 </LinearLayout>

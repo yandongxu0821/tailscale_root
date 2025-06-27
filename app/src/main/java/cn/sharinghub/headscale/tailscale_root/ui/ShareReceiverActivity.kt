@@ -1,6 +1,6 @@
 package cn.sharinghub.headscale.tailscale_root.ui
 
-import android.app.Activity
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -62,6 +62,7 @@ class ShareReceiverActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun handleIntent(intent: Intent) {
         val action = intent.action
         val type = intent.type

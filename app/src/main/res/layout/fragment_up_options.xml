@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/up_options_scroll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="?attr/actionBarSize"
-    tools:context=".ui.UpOptionsFragment">
+    tools:context=".ui.UpOptionsFragment"
+    android:layout_marginBottom="?attr/actionBarSize">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,6 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/login_server"
+            android:importantForAutofill="no"
             android:inputType="textUri" />
 
         <EditText
@@ -41,6 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/auth_key"
+            android:importantForAutofill="no"
             android:inputType="textPassword" />
 
         <CheckBox
@@ -67,6 +70,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/hostname"
+            android:importantForAutofill="no"
             android:inputType="text" />
 
         <!-- 分组：出口节点和路由发布 -->
@@ -86,6 +90,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/exit_node"
+            android:importantForAutofill="no"
             android:inputType="text" />
 
         <CheckBox android:id="@+id/check_exit_node_lan" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/exit_node_allow_lan_access" />
@@ -94,12 +99,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/advertise_routes"
+            android:importantForAutofill="no"
             android:inputType="text" />
         <EditText
             android:id="@+id/edit_advertise_tags"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/advertise_tags"
+            android:importantForAutofill="no"
             android:inputType="text" />
 
         <!-- 分组：高级选项 -->
@@ -122,6 +129,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/timeout"
+            android:importantForAutofill="no"
             android:inputType="text" />
 
         <!-- 执行按钮 -->

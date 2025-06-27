@@ -39,4 +39,11 @@
     <string name="text_tailscaleDown">断开 tailscale (down)</string>
     <string name="text_recv">从 Taildrop 接收文件</string>
     <string name="text_ctrlStatus">状态输出将在这里显示</string>
+    <string name="text_logGeneral">general ⇋</string>
+    <string name="text_btnRefresh">刷新</string>
+    <string name="text_btnFlushLog">清空日志</string>
+    <string name="text_logHint">日志输出将在这里显示</string>
+    <string name="text_daemonStatus">守护进程状态：</string>
+    <string name="text_tailscaleIp">Tailscale IP：</string>
+    <string name="text_status">Status 输出：</string>
 </resources>

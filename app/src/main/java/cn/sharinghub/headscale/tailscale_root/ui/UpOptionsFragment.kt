@@ -11,7 +11,6 @@ import cn.sharinghub.headscale.tailscale_root.R
 import cn.sharinghub.headscale.tailscale_root.core.BinaryInstaller
 import cn.sharinghub.headscale.tailscale_root.util.LogCollector
 import cn.sharinghub.headscale.tailscale_root.core.RootShell
-import cn.sharinghub.headscale.tailscale_root.service.TailscaleService
 
 class UpOptionsFragment : Fragment() {
 

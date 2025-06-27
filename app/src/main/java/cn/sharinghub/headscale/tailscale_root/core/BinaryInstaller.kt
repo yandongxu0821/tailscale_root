@@ -10,7 +10,7 @@ object BinaryInstaller {
 
     private const val INSTALL_PATH = "/data/local/temp/tailscale/"
 
-    // @SuppressLint("SetWorldReadable")
+    @SuppressLint("SetWorldReadable")
     private fun extractAndCopyBinary(context: Context, assetName: String, outputName: String): Boolean {
         return try {
             // 1. 写入到 app 私有目录
@@ -58,5 +58,5 @@ object BinaryInstaller {
     fun getTailscaledPath(): String = INSTALL_PATH + "tailscaled"
     fun getTailscalePath(): String = INSTALL_PATH + "tailscale"
     fun getTailscaleSockPath(): String = INSTALL_PATH + "tailscaled.sock"
-    fun getInstallPath(): String = INSTALL_PATH
+    // fun getInstallPath(): String = INSTALL_PATH
 }

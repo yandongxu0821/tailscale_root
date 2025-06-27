@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_status">
+
+<!--    <fragment-->
+<!--        android:id="@+id/navigation_home"-->
+<!--        android:name="cn.sharinghub.headscale.tailscale_root.ui.home.HomeFragment"-->
+<!--        android:label="@string/title_home"-->
+<!--        tools:layout="@layout/fragment_home" />-->
+
+<!--    <fragment-->
+<!--        android:id="@+id/navigation_dashboard"-->
+<!--        android:name="cn.sharinghub.headscale.tailscale_root.ui.dashboard.DashboardFragment"-->
+<!--        android:label="@string/title_dashboard"-->
+<!--        tools:layout="@layout/fragment_dashboard" />-->
+
+<!--    <fragment-->
+<!--        android:id="@+id/navigation_notifications"-->
+<!--        android:name="cn.sharinghub.headscale.tailscale_root.ui.notifications.NotificationsFragment"-->
+<!--        android:label="@string/title_notifications"-->
+<!--        tools:layout="@layout/fragment_notifications" />-->
+
+    <fragment
+        android:id="@+id/navigation_status"
+        android:name="cn.sharinghub.headscale.tailscale_root.ui.StatusFragment"
+        android:label="@string/title_status"
+        tools:layout="@layout/fragment_status" />
+
+    <fragment
+        android:id="@+id/navigation_control"
+        android:name="cn.sharinghub.headscale.tailscale_root.ui.ControlFragment"
+        android:label="@string/title_control"
+        tools:layout="@layout/fragment_control" />
+
+    <fragment
+        android:id="@+id/navigation_log"
+        android:name="cn.sharinghub.headscale.tailscale_root.ui.LogFragment"
+        android:label="@string/title_log"
+        tools:layout="@layout/fragment_log" />
+
+    <fragment
+        android:id="@+id/navigation_up_options"
+        android:name="cn.sharinghub.headscale.tailscale_root.ui.UpOptionsFragment"
+        android:label="@string/up_options"
+        tools:layout="@layout/fragment_up_options" />
+
+
+
+</navigation>

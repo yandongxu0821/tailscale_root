@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:paddingBottom="?attr/actionBarSize">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:padding="8dp">
+
+        <Button
+            android:id="@+id/btn_install"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_install" />
+
+        <Button
+            android:id="@+id/btn_start"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_daemonStart"
+            android:layout_marginTop="8dp" />
+
+        <Button
+            android:id="@+id/btn_stop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_daemonStop"
+            android:layout_marginTop="8dp" />
+
+        <Button
+            android:id="@+id/btn_up"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_tailscaleUp"
+            android:layout_marginTop="8dp" />
+
+        <Button
+            android:id="@+id/btn_down"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_tailscaleDown"
+            android:layout_marginTop="8dp" />
+
+        <Button
+            android:id="@+id/btn_recv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_recv"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/text_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_ctrlStatus"
+            android:padding="12dp"
+            android:layout_marginTop="16dp"
+            android:background="#EEEEEE"
+            android:textIsSelectable="true" />
+    </LinearLayout>
+</ScrollView>

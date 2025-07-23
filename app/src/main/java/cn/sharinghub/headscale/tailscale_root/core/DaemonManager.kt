@@ -1,6 +1,5 @@
 package cn.sharinghub.headscale.tailscale_root.core
 
-import android.content.Context
 import cn.sharinghub.headscale.tailscale_root.util.LogCollector
 
 object DaemonManager {
@@ -14,7 +13,7 @@ object DaemonManager {
      */
     private var tailscaledProcess: Process? = null
 
-    fun startDaemon(context: Context): Boolean {
+    fun startDaemon(): Boolean {
         LogCollector.log("正在启动 tailscaled（捕获日志）...")
 
         try {
@@ -115,7 +114,9 @@ object DaemonManager {
      * 从 Taildrop 获取接收到的文件
      */
     fun recvFileFromTaildrop(): RootShell.CommandResult {
-        val cmd = "${BinaryInstaller.getTailscalePath()} --socket=$SOCKET_PATH file get /sdcard/Download/"
+        val cmd = "${BinaryInstaller.getTailscalePath()} " +
+                "--socket=$SOCKET_PATH " +
+                "file get --verbose /sdcard/Download/Taildrop/"
         return RootShell.exec(cmd)
     }
 

@@ -47,6 +47,10 @@
         android:label="@string/up_options"
         tools:layout="@layout/fragment_up_options" />
 
-
+    <fragment
+        android:id="@+id/navigation_net_options"
+        android:name="cn.sharinghub.headscale.tailscale_root.ui.NetOptionsFragment"
+        android:label="@string/net_options"
+        tools:layout="@layout/fragment_up_options" />
 
 </navigation>

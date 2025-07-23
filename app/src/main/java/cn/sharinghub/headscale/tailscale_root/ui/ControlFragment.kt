@@ -15,6 +15,7 @@ import cn.sharinghub.headscale.tailscale_root.core.DaemonManager
 class ControlFragment : Fragment(R.layout.fragment_control) {
 
     private lateinit var btnInstall: Button
+    private lateinit var btnInitNet: Button
     private lateinit var btnStart: Button
     private lateinit var btnStop: Button
     private lateinit var btnUp: Button
@@ -33,6 +34,7 @@ class ControlFragment : Fragment(R.layout.fragment_control) {
         super.onViewCreated(view, savedInstanceState)
 
         btnInstall = view.findViewById(R.id.btn_install)
+        btnInitNet = view.findViewById(R.id.btn_init_net)
         btnStart = view.findViewById(R.id.btn_start)
         btnStop = view.findViewById(R.id.btn_stop)
         btnUp = view.findViewById(R.id.btn_up)
@@ -47,9 +49,13 @@ class ControlFragment : Fragment(R.layout.fragment_control) {
             }
         }
 
+        btnInitNet.setOnClickListener {
+            findNavController().navigate(R.id.navigation_net_options)
+        }
+
         btnStart.setOnClickListener {
             threadWithFeedback("启动守护进程") {
-                val ok = DaemonManager.startDaemon(requireContext())
+                val ok = DaemonManager.startDaemon()
                 ok to "启动 tailscaled ${if (ok) "成功" else "失败"}"
             }
         }

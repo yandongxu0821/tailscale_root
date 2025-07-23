@@ -20,6 +20,13 @@
             android:text="@string/text_install" />
 
         <Button
+            android:id="@+id/btn_init_net"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_init_net"
+            android:layout_marginTop="8dp" />
+
+        <Button
             android:id="@+id/btn_start"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

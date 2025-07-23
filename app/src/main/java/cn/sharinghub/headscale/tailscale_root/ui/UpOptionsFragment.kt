@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import cn.sharinghub.headscale.tailscale_root.R
 import cn.sharinghub.headscale.tailscale_root.core.BinaryInstaller
 import cn.sharinghub.headscale.tailscale_root.util.LogCollector
@@ -27,9 +26,9 @@ class UpOptionsFragment : Fragment() {
             Toast.makeText(requireContext(), "tailscale up 已执行", Toast.LENGTH_SHORT).show()
         }
 
-        view.findViewById<Button>(R.id.btn_back_control)?.setOnClickListener {
-            findNavController().popBackStack()
-        }
+//        view.findViewById<Button>(R.id.btn_back_control)?.setOnClickListener {
+//            findNavController().popBackStack()
+//        }
     }
 
     private fun tailscaleUp(view: View): RootShell.CommandResult {

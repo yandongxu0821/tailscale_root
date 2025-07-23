@@ -7,6 +7,7 @@
     <string name="title_control">控制台</string>
     <string name="title_log">日志</string>
     <string name="up_options">tailscale up 参数配置</string>
+    <string name="net_options">网络参数配置</string>
     <string name="dns_accept_dns">接受 DNS (accept-dns)</string>
     <string name="accept_risk">接受风险 (accept-risk)</string>
     <string name="accept_routes">接受路由 (accept-routes)</string>
@@ -33,6 +34,7 @@
     <string name="text_advanced">高级与调试</string>
     <string name="text_execute">执行 tailscale up</string>
     <string name="text_install">安装二进制</string>
+    <string name="text_init_net">初始化网络设置（路由表，ip转发，dns）</string>
     <string name="text_daemonStart">启动守护进程</string>
     <string name="text_daemonStop">停止守护进程</string>
     <string name="text_tailscaleUp">连接 tailscale (up)</string>
@@ -46,4 +48,10 @@
     <string name="text_daemonStatus">守护进程状态：</string>
     <string name="text_tailscaleIp">Tailscale IP：</string>
     <string name="text_status">Status 输出：</string>
+    <string name="text_gateway">默认网关</string>
+    <string name="text_route">当前网关地址</string>
+    <string name="forward_v4">启用 IPv4 转发</string>
+    <string name="forward_v6">启用 IPv6 转发</string>
+    <string name="dns_nameserver">追加 DNS 解析服务器</string>
+    <string name="button_apply_gateway">✓</string>
 </resources>

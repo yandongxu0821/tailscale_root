@@ -84,7 +84,7 @@ class TailscaleService : Service() {
 
     private fun startTailscaled() {
         Thread {
-            val success = DaemonManager.startDaemon(this)
+            val success = DaemonManager.startDaemon()
             updateNotification(
                 if (success) "tailscaled 正在运行"
                 else "tailscaled 启动失败，请检查 root 权限或配置"

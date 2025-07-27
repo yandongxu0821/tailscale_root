@@ -61,9 +61,12 @@ object DaemonManager {
      * 停止 tailscaled 守护进程（简单暴力）
      */
     fun stopDaemon(): Boolean {
-        val result1 = RootShell.exec("pkill tailscaled")
-        val result2 = RootShell.exec("rm -rf $SOCKET_PATH")
-        return result1.success && result2.success
+        val commands = listOf(
+            "pkill tailscaled",
+            "rm -rf $SOCKET_PATH"
+        )
+        val result = RootShell.exec(commands)
+        return result.success
     }
 
     /**

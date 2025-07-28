@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import cn.sharinghub.headscale.tailscale_root.R
-import cn.sharinghub.headscale.tailscale_root.util.LogCollector
 import cn.sharinghub.headscale.tailscale_root.core.RootShell
+import cn.sharinghub.headscale.tailscale_root.util.LogCollector
 
 class NetOptionsFragment : Fragment() {
 
@@ -17,7 +17,6 @@ class NetOptionsFragment : Fragment() {
     private lateinit var checkboxIpv4:    CheckBox
     private lateinit var checkboxIpv6:    CheckBox
     private lateinit var btnAddDns:       Button
-//    private lateinit var btnBack:         Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,10 +29,8 @@ class NetOptionsFragment : Fragment() {
         checkboxIpv4    = view.findViewById(R.id.ipv4_forwarding_checkbox)
         checkboxIpv6    = view.findViewById(R.id.ipv6_forwarding_checkbox)
         btnAddDns       = view.findViewById(R.id.add_dns_nameserver)
-//        btnBack         = view.findViewById(R.id.btn_back_control)
 
         setupListeners()
-
         return view
     }
 
@@ -44,9 +41,9 @@ class NetOptionsFragment : Fragment() {
             if (ip.isNotEmpty() && ipv4Regex.matches(ip)) {
                 val cmd = "ip route add default via $ip dev wlan0"
                 RootShell.exec(cmd)
-                LogCollector.log("Default gateway set to $ip")
+                LogCollector.log("默认网关设置成 $ip")
             } else {
-                LogCollector.log("Please enter a valid IP")
+                LogCollector.log("输入的网关地址无效")
                 return@setOnClickListener
             }
         }
@@ -54,23 +51,18 @@ class NetOptionsFragment : Fragment() {
         checkboxIpv4.setOnCheckedChangeListener { _, isChecked ->
             val value = if (isChecked) "1" else "0"
             RootShell.exec("sysctl -w net.ipv4.ip_forward=$value")
-            LogCollector.log("IPv4 forwarding ${if (isChecked) "enabled" else "disabled"}")
+            LogCollector.log("IPv4 转发 ${if (isChecked) "开启" else "关闭"}")
         }
 
         checkboxIpv6.setOnCheckedChangeListener { _, isChecked ->
             val value = if (isChecked) "1" else "0"
             RootShell.exec("sysctl -w net.ipv6.conf.all.forwarding=$value")
-            LogCollector.log("IPv6 forwarding ${if (isChecked) "enabled" else "disabled"}")
+            LogCollector.log("IPv6 转发 ${if (isChecked) "开启" else "关闭"}")
         }
 
         btnAddDns.setOnClickListener {
-            val cmd = """echo "nameserver 223.5.5.5" >> /etc/resolv.conf"""
-            RootShell.exec(cmd)
-            LogCollector.log("DNS added: 223.5.5.5")
+            RootShell.exec("echo 'nameserver 223.5.5.5' >> /etc/resolv.conf")
+            LogCollector.log("DNS 名称服务器 223.5.5.5 已添加")
         }
-
-//        btnBack.setOnClickListener {
-//            requireActivity().onBackPressedDispatcher.onBackPressed()
-//        }
     }
 }

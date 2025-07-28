@@ -11,7 +11,7 @@ object LogCollector {
     /**
      * 添加日志
      * @param msg 日志内容
-     * @param tag 日志类别（如 "general", "daemon"）
+     * @param tag 日志类别（"general", "daemon"）
      */
     fun log(msg: String, tag: String = "general") {
         val timestamp = "[" + SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(Date()) + "] "
@@ -39,9 +39,4 @@ object LogCollector {
             logMap.remove(tag)
         }
     }
-
-    /**
-     * 获取所有 tag 名称（用于 UI 切换）
-     */
-    fun getTags(): Set<String> = logMap.keys
 }

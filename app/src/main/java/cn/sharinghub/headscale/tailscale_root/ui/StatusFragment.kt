@@ -15,6 +15,11 @@ class StatusFragment : Fragment(R.layout.fragment_status) {
     private lateinit var textDaemonStatus: TextView
     private lateinit var textIp: TextView
     private lateinit var textStatus: TextView
+    private lateinit var buttonRefresh: View
+
+    private var cachedDaemonStatus: String? = null
+    private var cachedIp: String? = null
+    private var cachedStatus: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,35 +28,50 @@ class StatusFragment : Fragment(R.layout.fragment_status) {
         return inflater.inflate(R.layout.fragment_status, container, false)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         textDaemonStatus = view.findViewById(R.id.text_daemon_status)
         textIp = view.findViewById(R.id.text_ip)
         textStatus = view.findViewById(R.id.text_status)
+        buttonRefresh = view.findViewById(R.id.button_refresh)
 
-        loadStatus()
+        textDaemonStatus.text = cachedDaemonStatus ?: "守护进程状态："
+        textIp.text = cachedIp ?: "Tailscale IP："
+        textStatus.text = cachedStatus ?: "Status 输出将在这里显示"
+
+        buttonRefresh.setOnClickListener {
+            loadStatus()
+        }
     }
 
     @SuppressLint("SetTextI18n")
     private fun loadStatus() {
         textDaemonStatus.text = "守护进程状态：查询中..."
         textIp.text = "Tailscale IP：查询中..."
-        textStatus.text = "Status 输出：加载中..."
+        textStatus.text = "......"
 
         Thread {
             val daemonRunning = DaemonManager.isRunning()
             val ip = DaemonManager.getTailscaleIP()
             val status = DaemonManager.getStatus()
 
-            activity?.runOnUiThread {
-                if (!isAdded) return@runOnUiThread  // 防止 fragment 已销毁
+            val newDaemonStatus = "守护进程状态：" + if (daemonRunning) "正在运行" else "已停止"
+            val newIp = "Tailscale IP：" + (ip ?: "未分配")
+            val newStatus = status.output.ifBlank { status.error }
 
-                textDaemonStatus.text = "守护进程状态：" + if (daemonRunning) "已运行" else "未运行"
-                textIp.text = "Tailscale IP：" + (ip ?: "未分配")
-                textStatus.text = status.output.ifBlank { status.error }
+            activity?.runOnUiThread {
+                if (!isAdded) return@runOnUiThread
+
+                cachedDaemonStatus = newDaemonStatus
+                cachedIp = newIp
+                cachedStatus = newStatus
+
+                textDaemonStatus.text = newDaemonStatus
+                textIp.text = newIp
+                textStatus.text = newStatus
             }
         }.start()
     }
-
 }

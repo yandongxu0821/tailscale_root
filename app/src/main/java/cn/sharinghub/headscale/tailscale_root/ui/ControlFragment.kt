@@ -68,11 +68,6 @@ class ControlFragment : Fragment(R.layout.fragment_control) {
         }
 
         btnUp.setOnClickListener {
-//            val key = authKeyEdit.text.toString().trim().ifEmpty { null }
-//            threadWithFeedback("执行 tailscale up") {
-//                val result = DaemonManager.tailscaleUp(key)
-//                result.success to result.output.ifEmpty { result.error }
-//            }
             findNavController().navigate(R.id.navigation_up_options)
         }
 

@@ -8,14 +8,15 @@ plugins {
 
 android {
     namespace = "cn.sharinghub.headscale.tailscale_root"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "cn.sharinghub.headscale.tailscale_root"
         minSdk = 21
-        targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
+        //noinspection ExpiredTargetSdkVersion
+        targetSdk = 22
+        versionCode = 2
+        versionName = "1.0-beta1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

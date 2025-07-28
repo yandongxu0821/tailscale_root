@@ -4,6 +4,7 @@ import cn.sharinghub.headscale.tailscale_root.util.LogCollector
 
 object DaemonManager {
 
+    const val BINARY_PATH = "/data/local/temp/tailscale"
     private const val STATE_PATH = "/data/local/temp/tailscale/state.json"
     const val SOCKET_PATH = "/data/local/temp/tailscale/tailscaled.sock"
     private const val PORT = 41641
@@ -14,7 +15,7 @@ object DaemonManager {
     private var tailscaledProcess: Process? = null
 
     fun startDaemon(): Boolean {
-        LogCollector.log("正在启动 tailscaled（捕获日志）...")
+        LogCollector.log("tailscaled 正在启动...")
 
         try {
             // 启动前准备
@@ -48,11 +49,12 @@ object DaemonManager {
                 }
             }.start()
 
-            LogCollector.log("tailscaled 启动成功，同时开始捕获日志")
+            LogCollector.log("tailscaled 启动成功")
             return true
+
         } catch (e: Exception) {
             e.printStackTrace()
-            LogCollector.log("启动 tailscaled 失败：${e.message}")
+            LogCollector.log("tailscaled 启动失败：${e.message}")
             return false
         }
     }
@@ -83,8 +85,10 @@ object DaemonManager {
      * 停止 tailscale 网络连接
      */
     fun tailscaleDown(): RootShell.CommandResult {
-        val cmd = "${BinaryInstaller.getTailscalePath()} --socket=$SOCKET_PATH down"
-        return RootShell.exec(cmd)
+        return RootShell.exec(listOf(
+            "cd $BINARY_PATH",
+            "${BinaryInstaller.getTailscalePath()} --socket=$SOCKET_PATH down"
+        ))
     }
 
     /**
@@ -94,6 +98,7 @@ object DaemonManager {
         val cmd = "${BinaryInstaller.getTailscalePath()} --socket=$SOCKET_PATH status"
         return RootShell.exec(cmd)
     }
+
     /**
      * 获取当前连接状态（tailscale status --json）
      */
@@ -101,7 +106,6 @@ object DaemonManager {
         val cmd = "${BinaryInstaller.getTailscalePath()} --socket=$SOCKET_PATH status --json"
         return RootShell.exec(cmd)
     }
-
 
     /**
      * 获取当前分配的 Tailscale IP 地址（提取自 status）
@@ -118,7 +122,6 @@ object DaemonManager {
      */
     fun recvFileFromTaildrop(): RootShell.CommandResult {
         val cmd = "${BinaryInstaller.getTailscalePath()} " +
-                "--socket=$SOCKET_PATH " +
                 "file get --verbose /sdcard/Download/Taildrop/"
         return RootShell.exec(cmd)
     }

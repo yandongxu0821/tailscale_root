@@ -14,6 +14,8 @@ object RootShell {
 
     /**
      * 执行单条 root 命令
+     * 转发到 exec(commands: List<String>) 执行
+     * @param cmd: String
      */
     fun exec(cmd: String): CommandResult {
         return exec(listOf(cmd))
@@ -21,6 +23,7 @@ object RootShell {
 
     /**
      * 执行多条 root 命令
+     * @param commands: List<String>
      */
     fun exec(commands: List<String>): CommandResult {
         return try {

@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import cn.sharinghub.headscale.tailscale_root.R
+import cn.sharinghub.headscale.tailscale_root.core.RootShell
 import cn.sharinghub.headscale.tailscale_root.core.BinaryInstaller
 import cn.sharinghub.headscale.tailscale_root.util.LogCollector
-import cn.sharinghub.headscale.tailscale_root.core.RootShell
 
 class UpOptionsFragment : Fragment() {
 
@@ -25,17 +25,11 @@ class UpOptionsFragment : Fragment() {
             LogCollector.log("tailscale up 输出：\n${result.output}")
             Toast.makeText(requireContext(), "tailscale up 已执行", Toast.LENGTH_SHORT).show()
         }
-
-//        view.findViewById<Button>(R.id.btn_back_control)?.setOnClickListener {
-//            findNavController().popBackStack()
-//        }
     }
 
     private fun tailscaleUp(view: View): RootShell.CommandResult {
-        val base = BinaryInstaller.getTailscalePath() +
-                " up" +
-                " --socket=" +
-                BinaryInstaller.getTailscaleSockPath()
+
+        val base = BinaryInstaller.getTailscalePath() + "--socket=" + BinaryInstaller.getTailscaleSockPath() +" up"
         val args = mutableListOf<String>()
 
         fun isChecked(id: Int) = view.findViewById<CheckBox>(id)?.isChecked == true
@@ -71,6 +65,7 @@ class UpOptionsFragment : Fragment() {
 
         val fullCmd = "$base ${args.joinToString(" ")}"
         LogCollector.log("执行 tailscale up:\n$fullCmd")
-        return RootShell.exec(fullCmd)
+
+        return RootShell.exec(listOf(fullCmd))
     }
 }

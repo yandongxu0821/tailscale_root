@@ -122,7 +122,7 @@ object DaemonManager {
      */
     fun recvFileFromTaildrop(): RootShell.CommandResult {
         val cmd = "${BinaryInstaller.getTailscalePath()} " +
-                "file get --verbose /sdcard/Download/Taildrop/"
+                "--socket=$SOCKET_PATH file get --verbose /sdcard/Download/Taildrop/"
         return RootShell.exec(cmd)
     }
 

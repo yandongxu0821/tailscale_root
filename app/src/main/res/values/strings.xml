@@ -55,4 +55,5 @@
     <string name="dns_nameserver">追加 DNS 解析服务器</string>
     <string name="button_apply_gateway">✓</string>
     <string name="button_refresh_status">刷新</string>
+    <string name="text_isOnline">在线状态：</string>
 </resources>

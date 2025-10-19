@@ -4,9 +4,9 @@ import cn.sharinghub.headscale.tailscale_root.util.LogCollector
 
 object DaemonManager {
 
-    const val BINARY_PATH = "/data/local/temp/tailscale"
-    private const val STATE_PATH = "/data/local/temp/tailscale/state.json"
-    const val SOCKET_PATH = "/data/local/temp/tailscale/tailscaled.sock"
+    const val BINARY_PATH = "/data/local/tailscale"
+    private const val STATE_PATH = "/data/local/tailscale/state.json"
+    const val SOCKET_PATH = "/data/local/tailscale/tailscaled.sock"
     private const val PORT = 41641
 
     /**
@@ -133,4 +133,21 @@ object DaemonManager {
         val result = RootShell.exec("[ -S $SOCKET_PATH ] && echo RUNNING || echo STOPPED")
         return result.output.trim() == "RUNNING"
     }
+
+    /**
+     * 检查 tailscale 在线状态（检查 tailscale status --json 输出的 self.Online）
+     */
+    fun isOnline(): Boolean {
+        return try {
+            val result = getStatusJson()
+            if (!result.success) return false
+
+            val json = org.json.JSONObject(result.output)
+            json.optJSONObject("Self")?.optBoolean("Online", false) ?: false
+        } catch (e: Exception) {
+            LogCollector.log("检查在线状态失败：${e.message}")
+            false
+        }
+    }
+
 }

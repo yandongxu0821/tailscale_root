@@ -42,6 +42,13 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
+            android:id="@+id/text_online"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_isOnline"
+            android:padding="8dp" />
+
+        <TextView
             android:id="@+id/text_ip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

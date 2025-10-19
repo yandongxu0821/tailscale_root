@@ -8,7 +8,7 @@ import java.io.FileOutputStream
 
 object BinaryInstaller {
 
-    private const val INSTALL_PATH = "/data/local/temp/tailscale/"
+    private const val INSTALL_PATH = "/data/local/tailscale/"
 
     @SuppressLint("SetWorldReadable")
     private fun extractAndCopyBinary(context: Context, assetName: String, outputName: String): Boolean {
@@ -41,7 +41,7 @@ object BinaryInstaller {
     fun installAllBinaries(context: Context): Boolean {
         return try {
             // 创建目标目录
-            val mkdirCmd = "mkdir -p $INSTALL_PATH"
+            val mkdirCmd = "mkdir -p $INSTALL_PATH && chmod 755 $INSTALL_PATH"
             val result = Runtime.getRuntime().exec(arrayOf("su", "-c", mkdirCmd)).waitFor()
             LogCollector.log("创建安装目录 $INSTALL_PATH 返回码: $result")
 

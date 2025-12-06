@@ -65,7 +65,7 @@ class StatusFragment : Fragment(R.layout.fragment_status) {
 
             val newDaemonStatus = "守护进程状态：" + if (daemonRunning) "正在运行" else "已停止"
             val newOnline = "在线状态：        " + if (online) "在线" else "离线"
-            val newIp = "Tailscale IP：   " + (ip ?: "未分配")
+            val newIp = "Tailscale IP：    " + (ip ?: "未分配")
             val newStatus = status.output.ifBlank { status.error }
 
             activity?.runOnUiThread {

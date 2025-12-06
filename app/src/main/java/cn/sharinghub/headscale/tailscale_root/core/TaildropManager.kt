@@ -20,7 +20,7 @@ object TaildropManager {
     fun sendFilesToPeer(context: Context, uris: List<Uri>, hostname: String): Boolean {
         return try {
             // 目标目录
-            val dropTempDir = File("/data/local/temp/tailscale/droptemp")
+            val dropTempDir = File(context.filesDir, "taildrop_temp")
             if (!dropTempDir.exists()) {
                 dropTempDir.mkdirs()
                 RootShell.exec(listOf("chmod -R 777 ${dropTempDir.absolutePath}"))
@@ -35,6 +35,7 @@ object TaildropManager {
 
                 FileOutputStream(targetFile).use { output ->
                     inputStream.copyTo(output)
+                    RootShell.exec(listOf("chmod 666 \"${targetFile.absolutePath}\""))
                 }
                 targetFile
             }
@@ -42,7 +43,7 @@ object TaildropManager {
             val destPath = "$hostname:"
             val cmd = buildString {
                 append(BinaryInstaller.getTailscalePath())
-                append(" --socket=${DaemonManager.SOCKET_PATH} file cp ")
+                append(" --socket=${BinaryInstaller.getTailscaleSockPath()} file cp ")
                 append(tempFiles.joinToString(" ") { "\"${it.absolutePath}\"" })
                 append(" ")
                 append(destPath)

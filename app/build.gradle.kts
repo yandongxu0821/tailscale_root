@@ -1,6 +1,3 @@
-import org.gradle.kotlin.dsl.create
-import org.jetbrains.kotlin.resolve.sam.SamConstructorDescriptorKindExclude.excludes
-
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -15,8 +12,8 @@ android {
         minSdk = 21
         //noinspection ExpiredTargetSdkVersion
         targetSdk = 22
-        versionCode = 7
-        versionName = "1.1-beta2"
+        versionCode = 8
+        versionName = "1.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

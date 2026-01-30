@@ -30,7 +30,7 @@ object DaemonManager {
             val cmd = listOf(
                 "su", "-c",
                 "${BinaryInstaller.getTailscaledPath()} " +
-                        "--tun=tun " +
+                        "--tun=tailscale0 " +
                         "--state=$STATE_PATH " +
                         "--socket=$SOCKET_PATH " +
                         "--port=$PORT"

@@ -2,6 +2,7 @@ package cn.sharinghub.headscale.tailscale_root.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -55,7 +56,9 @@ class ControlFragment : Fragment(R.layout.fragment_control) {
 
         btnStart.setOnClickListener {
             threadWithFeedback("启动守护进程") {
-                val ok = DaemonManager.startDaemon()
+                val prefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
+                val useProxy = prefs.getBoolean("use_proxy", false)
+                val ok = DaemonManager.startDaemon(useProxy)
                 ok to "启动 tailscaled ${if (ok) "成功" else "失败"}"
             }
         }

@@ -14,7 +14,7 @@ object DaemonManager {
      */
     private var tailscaledProcess: Process? = null
 
-    fun startDaemon(): Boolean {
+    fun startDaemon(useProxy: Boolean = false): Boolean {
         LogCollector.log("tailscaled 正在启动...")
 
         try {
@@ -27,14 +27,22 @@ object DaemonManager {
             ))
 
             // 构造命令行
-            val cmd = listOf(
-                "su", "-c",
-                "${BinaryInstaller.getTailscaledPath()} " +
-                        "--tun=tailscale0 " +
-                        "--state=$STATE_PATH " +
-                        "--socket=$SOCKET_PATH " +
-                        "--port=$PORT"
-            )
+            val tailscaleCmd = "${BinaryInstaller.getTailscaledPath()} " +
+                    "--tun=tailscale0 " +
+                    "--state=$STATE_PATH " +
+                    "--socket=$SOCKET_PATH " +
+                    "--port=$PORT"
+
+            val fullCmd = if (useProxy) {
+                "export HTTP_PROXY=socks5://127.0.0.1:10808; " +
+                "export HTTPS_PROXY=socks5://127.0.0.1:10808; " +
+                "export ALL_PROXY=socks5://127.0.0.1:10808; " +
+                tailscaleCmd
+            } else {
+                tailscaleCmd
+            }
+
+            val cmd = listOf("su", "-c", fullCmd)
 
             val builder = ProcessBuilder(cmd)
             builder.redirectErrorStream(true) // stderr 合并到 stdout

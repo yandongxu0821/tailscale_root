@@ -5,6 +5,7 @@ import android.app.*
 import android.content.Intent
 import android.os.Build
 import android.os.IBinder
+import android.preference.PreferenceManager
 import androidx.core.app.NotificationCompat
 import cn.sharinghub.headscale.tailscale_root.R
 import cn.sharinghub.headscale.tailscale_root.core.DaemonManager
@@ -84,7 +85,9 @@ class TailscaleService : Service() {
 
     private fun startTailscaled() {
         Thread {
-            val success = DaemonManager.startDaemon()
+            val prefs = PreferenceManager.getDefaultSharedPreferences(this)
+            val useProxy = prefs.getBoolean("use_proxy", false)
+            val success = DaemonManager.startDaemon(useProxy)
             updateNotification(
                 if (success) "tailscaled 正在运行"
                 else "tailscaled 启动失败，请检查 root 权限或配置"

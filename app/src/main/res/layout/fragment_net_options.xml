@@ -80,6 +80,12 @@
                 android:layout_height="wrap_content"
                 android:text="@string/forward_v6" />
 
+            <CheckBox
+                android:id="@+id/use_proxy_checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="使用代理" />
+
             <Button
                 android:id="@+id/add_dns_nameserver"
                 android:layout_width="match_parent"

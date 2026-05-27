@@ -16,12 +16,14 @@ class StatusFragment : Fragment(R.layout.fragment_status) {
     private lateinit var textOnline: TextView
     private lateinit var textIp: TextView
     private lateinit var textStatus: TextView
+    private lateinit var textNetCheck: TextView
     private lateinit var buttonRefresh: View
 
     private var cachedDaemonStatus: String? = null
     private var cachedOnline: String? = null
     private var cachedIp: String? = null
     private var cachedStatus: String? = null
+    private var cachedNetCheck: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,12 +40,14 @@ class StatusFragment : Fragment(R.layout.fragment_status) {
         textOnline = view.findViewById(R.id.text_online)
         textIp = view.findViewById(R.id.text_ip)
         textStatus = view.findViewById(R.id.text_status)
+        textNetCheck = view.findViewById(R.id.text_netcheck)
         buttonRefresh = view.findViewById(R.id.button_refresh)
 
         textDaemonStatus.text = cachedDaemonStatus ?: "守护进程状态："
         textOnline.text = cachedOnline ?: "在线状态：      "
         textIp.text = cachedIp ?: "Tailscale IP：  "
         textStatus.text = cachedStatus ?: "Status 输出将在这里显示"
+        textNetCheck.text = cachedNetCheck ?: "NetCheck 输出将在这里显示"
 
         buttonRefresh.setOnClickListener {
             loadStatus()
@@ -56,17 +60,20 @@ class StatusFragment : Fragment(R.layout.fragment_status) {
         textOnline.text = "在线状态：        查询中...      "
         textIp.text = "Tailscale IP：    查询中..."
         textStatus.text = "......"
+        textNetCheck.text = "......"
 
         Thread {
             val daemonRunning = DaemonManager.isRunning()
             val online = DaemonManager.isOnline()
             val ip = DaemonManager.getTailscaleIP()
             val status = DaemonManager.getStatus()
+            val netchk = DaemonManager.getNetCheck()
 
             val newDaemonStatus = "守护进程状态：" + if (daemonRunning) "正在运行" else "已停止"
             val newOnline = "在线状态：        " + if (online) "在线" else "离线"
             val newIp = "Tailscale IP：    " + (ip ?: "未分配")
             val newStatus = status.output.ifBlank { status.error }
+            val newNetchk = netchk.output.ifBlank { netchk.error }
 
             activity?.runOnUiThread {
                 if (!isAdded) return@runOnUiThread
@@ -75,11 +82,13 @@ class StatusFragment : Fragment(R.layout.fragment_status) {
                 cachedOnline = newOnline
                 cachedIp = newIp
                 cachedStatus = newStatus
+                cachedNetCheck = newNetchk
 
                 textDaemonStatus.text = newDaemonStatus
                 textOnline.text = newOnline
                 textIp.text = newIp
                 textStatus.text = newStatus
+                textNetCheck.text = newNetchk
             }
         }.start()
     }

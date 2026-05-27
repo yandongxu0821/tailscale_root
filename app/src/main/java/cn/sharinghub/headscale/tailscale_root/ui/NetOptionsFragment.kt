@@ -13,7 +13,6 @@ import cn.sharinghub.headscale.tailscale_root.util.LogCollector
 import androidx.core.content.edit
 
 class NetOptionsFragment : Fragment() {
-
     private lateinit var editGatewayIp:   EditText
     private lateinit var btnApplyGateway: Button
     private lateinit var checkboxIpv4:    CheckBox

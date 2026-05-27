@@ -47,7 +47,8 @@
     <string name="text_logHint">日志输出将在这里显示</string>
     <string name="text_daemonStatus">守护进程状态：</string>
     <string name="text_tailscaleIp">Tailscale IP：</string>
-    <string name="text_status">Status 输出：</string>
+    <string name="text_status">Status 输出</string>
+    <string name="text_netcheck">网络诊断信息输出</string>
     <string name="text_gateway">默认网关</string>
     <string name="text_route">当前网关地址</string>
     <string name="forward_v4">启用 IPv4 转发</string>

@@ -38,22 +38,32 @@ object RootShell {
             os.writeBytes("exit\n")
             os.flush()
 
-            // 读取标准输出
-            val reader = BufferedReader(InputStreamReader(process.inputStream))
-            var line: String?
-            while (reader.readLine().also { line = it } != null) {
-                stdout.appendLine(line)
+            val outThread = Thread {
+                process.inputStream.bufferedReader().useLines { lines ->
+                    lines.forEach {
+                        stdout.appendLine(it)
+                    }
+                }
             }
 
-            // 读取标准错误
-            val errorReader = BufferedReader(InputStreamReader(process.errorStream))
-            while (errorReader.readLine().also { line = it } != null) {
-                stderr.appendLine(line)
+            val errThread = Thread {
+                process.errorStream.bufferedReader().useLines { lines ->
+                    lines.forEach {
+                        stderr.appendLine(it)
+                    }
+                }
             }
+
+            outThread.start()
+            errThread.start()
 
             val exitCode = process.waitFor()
+
+            outThread.join()
+            errThread.join()
+
             CommandResult(
-                success = (exitCode == 0),
+                success = exitCode == 0,
                 output = stdout.toString().trim(),
                 error = stderr.toString().trim()
             )

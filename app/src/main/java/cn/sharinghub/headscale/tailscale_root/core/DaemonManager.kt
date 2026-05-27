@@ -116,6 +116,14 @@ object DaemonManager {
     }
 
     /**
+     * 获取当前连接状态（tailscale netcheck）
+     */
+    fun getNetCheck(): RootShell.CommandResult {
+        val cmd = "${BinaryInstaller.getTailscalePath()} --socket=$SOCKET_PATH netcheck"
+        return RootShell.exec(cmd)
+    }
+
+    /**
      * 获取当前分配的 Tailscale IP 地址（提取自 status）
      */
     fun getTailscaleIP(): String? {

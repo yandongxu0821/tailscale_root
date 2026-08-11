@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.*
 import android.widget.Button
+import android.widget.ScrollView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import cn.sharinghub.headscale.tailscale_root.R
@@ -15,6 +16,7 @@ class LogFragment : Fragment(R.layout.fragment_log) {
     private lateinit var refreshButton: Button
     private lateinit var clearButton: Button
     private lateinit var tagSelect: TextView
+    private lateinit var logScroll: ScrollView
 
     // 当前选中的 tag，默认显示 general
     private var currentTag = "general"
@@ -33,6 +35,7 @@ class LogFragment : Fragment(R.layout.fragment_log) {
         refreshButton = view.findViewById(R.id.btn_refresh)
         clearButton = view.findViewById(R.id.btn_clear)
         tagSelect = view.findViewById(R.id.tag_select)
+        logScroll = view.findViewById(R.id.log_scroll)
 
         refreshButton.setOnClickListener {
             refreshLogs()
@@ -53,6 +56,11 @@ class LogFragment : Fragment(R.layout.fragment_log) {
 
     private fun refreshLogs() {
         logText.text = LogCollector.getLogs(currentTag).ifBlank { "暂无日志。" }
+
+        // 等 TextView 完成布局后滚动到底部
+        logScroll.post {
+            logScroll.fullScroll(View.FOCUS_DOWN)
+        }
     }
 
     private fun toggleTag() {

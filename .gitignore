@@ -13,7 +13,10 @@ app/*.jks
 *.jks
 .gradle/gradle.properties
 app/release
+gradle/
+gradlew*
 
 # tailscale 二进制文件
 app/src/main/assets/tailscale
 app/src/main/assets/tailscaled
+

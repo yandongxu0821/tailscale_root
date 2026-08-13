@@ -10,10 +10,10 @@ android {
     defaultConfig {
         applicationId = "cn.sharinghub.headscale.tailscale_root"
         minSdk = 21
-        //noinspection ExpiredTargetSdkVersion
+        // noinspection ExpiredTargetSdkVersion
         targetSdk = 22
-        versionCode = 12
-        versionName = "1.2-beta4"
+        versionCode = 13
+        versionName = "1.2-beta5"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

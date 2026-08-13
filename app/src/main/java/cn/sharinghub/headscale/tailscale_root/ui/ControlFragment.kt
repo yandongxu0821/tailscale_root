@@ -12,14 +12,16 @@ import androidx.navigation.fragment.findNavController
 import cn.sharinghub.headscale.tailscale_root.R
 import cn.sharinghub.headscale.tailscale_root.core.BinaryInstaller
 import cn.sharinghub.headscale.tailscale_root.core.DaemonManager
+import cn.sharinghub.headscale.tailscale_root.core.UpdateManager
 
 class ControlFragment : Fragment(R.layout.fragment_control) {
 
     private lateinit var btnInstall: Button
+    private lateinit var btnBinaryUpdate: Button
     private lateinit var btnInitNet: Button
     private lateinit var btnStart: Button
     private lateinit var btnStop: Button
-    private lateinit var btnUp: Button
+//    private lateinit var btnUp: Button
     private lateinit var btnDown: Button
     private lateinit var btnRecv: Button
     private lateinit var resultText: TextView
@@ -34,19 +36,27 @@ class ControlFragment : Fragment(R.layout.fragment_control) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        btnInstall = view.findViewById(R.id.btn_install)
-        btnInitNet = view.findViewById(R.id.btn_init_net)
-        btnStart = view.findViewById(R.id.btn_start)
-        btnStop = view.findViewById(R.id.btn_stop)
-        btnUp = view.findViewById(R.id.btn_up)
-        btnDown = view.findViewById(R.id.btn_down)
-        btnRecv = view.findViewById(R.id.btn_recv)
-        resultText = view.findViewById(R.id.text_result)
+        btnInstall      = view.findViewById(R.id.btn_install)
+        btnBinaryUpdate = view.findViewById(R.id.btn_binaryupdate)
+        btnInitNet      = view.findViewById(R.id.btn_init_net)
+        btnStart        = view.findViewById(R.id.btn_start)
+        btnStop         = view.findViewById(R.id.btn_stop)
+//        btnUp           = view.findViewById(R.id.btn_up)
+        btnDown         = view.findViewById(R.id.btn_down)
+        btnRecv         = view.findViewById(R.id.btn_recv)
+        resultText      = view.findViewById(R.id.text_result)
 
         btnInstall.setOnClickListener {
             threadWithFeedback("安装二进制") {
                 val ok = BinaryInstaller.installAllBinaries(requireContext())
                 ok to "安装二进制 ${if (ok) "成功" else "失败"}"
+            }
+        }
+
+        btnBinaryUpdate.setOnClickListener {
+            threadWithFeedback("检查并更新二进制") {
+                val result = UpdateManager.performUpdate(requireContext())
+                result.success to result.message
             }
         }
 
@@ -70,9 +80,9 @@ class ControlFragment : Fragment(R.layout.fragment_control) {
             }
         }
 
-        btnUp.setOnClickListener {
-            findNavController().navigate(R.id.navigation_up_options)
-        }
+//        btnUp.setOnClickListener {
+//            findNavController().navigate(R.id.navigation_up_options)
+//        }
 
         btnDown.setOnClickListener {
             threadWithFeedback("执行 tailscale down") {

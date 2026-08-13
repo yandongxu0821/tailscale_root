@@ -20,6 +20,13 @@
             android:text="@string/text_install" />
 
         <Button
+            android:id="@+id/btn_binaryupdate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_binary_update"
+            android:layout_marginTop="8dp" />
+
+        <Button
             android:id="@+id/btn_init_net"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -40,12 +47,12 @@
             android:text="@string/text_daemonStop"
             android:layout_marginTop="8dp" />
 
-        <Button
-            android:id="@+id/btn_up"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/text_tailscaleUp"
-            android:layout_marginTop="8dp" />
+<!--        <Button-->
+<!--            android:id="@+id/btn_up"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/text_tailscaleUp"-->
+<!--            android:layout_marginTop="8dp" />-->
 
         <Button
             android:id="@+id/btn_down"

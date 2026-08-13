@@ -6,7 +6,7 @@ object DaemonManager {
 
     const val BINARY_PATH = "/data/local/tailscale"
     private const val STATE_PATH = "/data/local/tailscale/state.json"
-    const val SOCKET_PATH = "/data/local/tailscale/tailscaled.sock"
+    private const val SOCKET_PATH = "/data/local/tailscale/tailscaled.sock"
     private const val PORT = 41641
 
     /**

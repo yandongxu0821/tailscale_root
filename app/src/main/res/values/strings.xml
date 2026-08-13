@@ -34,6 +34,7 @@
     <string name="text_advanced">高级与调试</string>
     <string name="text_execute">执行 tailscale up</string>
     <string name="text_install">安装二进制</string>
+    <string name="text_binary_update">更新二进制</string>
     <string name="text_init_net">初始化网络设置（路由表，ip转发，dns）</string>
     <string name="text_daemonStart">启动守护进程</string>
     <string name="text_daemonStop">停止守护进程</string>
